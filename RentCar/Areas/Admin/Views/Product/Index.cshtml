@@ -1,0 +1,253 @@
+﻿@using RentCar.Models
+@model IEnumerable<Products>
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+
+
+<script src="~/lib/Chart.js/Chart.js"></script>
+
+<canvas id="myChart" style="background-color:black;margin-bottom:20px;width:100%;"></canvas>
+
+
+<canvas id="myChart1" style="background-color:black;margin-bottom:20px;width:100%;"></canvas>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Dacia', 'Golf', 'Ford', ' Pickup', 'Renault', 'uno', 'Mazda', 'Buggati', 'Ferrari'],
+            datasets: [{
+
+                label: 'Price',
+                data: [100, 200, 200, 100, 150, 100, 1000, 1500, 2000],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+
+            },
+
+            title: {
+                display: true,
+                text: 'Price of Most Popular Rent Cars',
+                fontSize: 3,
+                position: 'center'
+            }
+
+        }
+
+    });
+</script>
+<script>
+    var ctx1 = document.getElementById('myChart1').getContext('2d');
+    var myChart1 = new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            labels: ['Dacia', 'Golf', 'Ford', ' Pickup', 'Renault', 'uno', 'Mazda', 'Buggati', 'Ferrari'],
+            datasets: [{
+
+                label: 'Price',
+                data: [100, 200, 200, 100, 150, 100, 1000, 1500, 2000],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+
+            },
+
+            title: {
+                display: true,
+                text: 'Price of Most Popular Rent Cars',
+                fontSize: 3,
+                position: 'center'
+            }
+
+        }
+
+    });
+</script>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h3 class="text-info">Product List</h3>
+    </div>
+    <div class="col-lg-6 text-right">
+        <a asp-action="Create" class="btn btn-info">&nbsp;Add New Car </a>
+    </div>
+
+</div>
+<form method="post">
+    <div class="row">
+        <div class="col-lg-3">
+            <input type="number" class="form-control" name="lowAmount" />
+        </div>
+        <div class="col-lg-3">
+            <input type="number" class="form-control" name="largeAmount" />
+        </div>
+        <div class="col-lg-3">
+            <input type="submit" value="Search" class="btn  btn-success" />
+        </div>
+
+
+    </div>
+</form>
+
+<br />
+<div>
+    <table class="table table-striped border" id="myTable">
+        <thead>
+            <tr class="table-info ">
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.Name)
+                </th>
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.Matricule)
+                </th>
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.Kilometrage)
+                </th>
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.Price)
+                </th>
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.annee)
+                </th>
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.ProductColor)
+                </th>
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.IsAvailable)
+                </th>
+
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.ProductTypeId)
+                </th>
+
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.SpecialTagId)
+                </th>
+                <th class="text-info">
+                    @Html.DisplayNameFor(c => c.ProprietaireId)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Matricule</td>
+                <td>@item.Kilometrage</td>
+                <td>@item.Price</td>
+                <td>@item.annee</td>
+                <td>@item.ProductColor</td>
+                <td>@item.IsAvailable</td>
+                <td>@item.ProductTypes.ProductType</td>
+                <td>@item.SpecialTag.Name</td>
+                <td>@item.Proprietaire.Name</td>
+
+
+                <td>
+                    <partial name="ButtonPartialProduct" model="@item.Id" />
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+</div>
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+
+    $(function(){
+        var save = '@TempData["save"]'
+        if (save!=null) {
+            alertify.success(save);
+        }
+
+        var edit = '@TempData["edit"]'
+        if (save!=null) {
+            alertify.success(edit);
+        }
+
+        var del = '@TempData["delete"]'
+        if (save!=null) {
+            alertify.success(del);
+        }
+    })
+
+    </script>
+
+
+
+}

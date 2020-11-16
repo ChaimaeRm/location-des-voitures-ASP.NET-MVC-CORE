@@ -1,0 +1,50 @@
+﻿@using RentCar.Models
+@model IEnumerable<ProductTypes>
+@{
+    ViewData["Title"] = "Index";
+}
+<br/><br/>
+     <div class="row">
+         <div class="col-lg-6">
+             <h3 class="text-info">Product Type List</h3>
+         </div>
+         <div class="col-lg-6 text-right">
+             <a asp-action="Create" class="btn btn-info">&nbsp; New product  Type</a>
+         </div>
+
+      </div>
+
+
+<br/>
+<div>
+    <table class="table table-striped border ">
+        <tr class="table-info " >
+            <th class="text-info">@Html.DisplayNameFor(c=>c.ProductType)</th>
+            <th></th>
+             <th></th>           
+        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td >@item.ProductType</td>
+               
+                 <td>
+              <partial name="ButtonPartial" model="@item.Id"/>
+                  </td>
+            </tr>
+        }
+    </table>
+</div>
+@section scripts{ 
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var save = '@TempData["save"]'
+        if (save!=null) {
+            alertify.success(save);
+        }
+    })
+
+    </script>
+    
+}

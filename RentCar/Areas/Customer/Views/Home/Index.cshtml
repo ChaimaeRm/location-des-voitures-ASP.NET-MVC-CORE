@@ -1,0 +1,108 @@
+﻿@using RentCar.Models;
+@model List<Products>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .card-price{ border-color: #999; background-color: #ededed; margin-bottom: 24px; }
+.card-price > .card-heading,
+.card-price > .card-footer{ color: #333; background-color: #fdfdfd; }
+.card-price > .card-heading{ border-bottom: 1px solid #ddd; padding: 8px; }
+.card-price > .card-footer{ border-top: 1px solid #ddd; padding: 8px; }
+.card-price > .card-img:first-child img{ border-radius: 6px 6px 0 0; }
+.card-price > .card-left{ padding-right: 4px; }
+.card-price > .card-right{ padding-left: 4px; }
+
+.card-price p:last-child{ margin-bottom: 0; }
+
+.card-price .price{ 
+  text-align: center; 
+  color: #337ab7; 
+  font-size: 3em; 
+  text-transform: uppercase;
+  line-height: 0.7em; 
+  margin: 24px 0 16px;
+}
+.card-price .price small{ font-size: 0.4em; color: #66a5da; }
+.card-price .details{ list-style: none; margin-bottom: 24px; padding: 0 18px; }
+.card-price .details li{ text-align: center; margin-bottom: 8px; }
+.card-price .buy-now{ text-transform: uppercase; }
+.card-price table .price{ font-size: 1.2em; font-weight: 700; text-align: left; }
+.card-price table .note{ color: #666; font-size: 0.8em; }
+</style>
+
+
+
+
+<style>
+    .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+        /* On mouse-over, add a deeper shadow */
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+    .card-caption {
+        position: absolute;
+        right: 0;
+        bottom: 16px;
+        left: 0;
+    }
+</style>
+<br /><br />
+      <div class="row">
+
+</div>
+          @* @foreach (var item in Model)
+        {
+            <div class="col-lg-4" x>
+                <div class="card">
+                    <div class="card-header container" style="width:auto">
+                        <img src="~/images/@item.Image" alt="card Image" class="card-img-top col-lg-4" style="height:320px;width:100%" />
+                    </div>
+                    <div class="card-body" style="background-color:#dcdcdc;height:40px;position:relative">
+                        <h4 class="my-0 font-weight-normal text-center">
+                            <label style="font-size:23px;padding-top:10px">@item.Name</label>
+                        </h4>
+                    </div>
+
+
+                </div>
+            </div>
+
+        }*@
+
+          @foreach (var item in Model)
+          {
+              <div class="col-lg-4" >
+
+                  
+                  <div class="card card-price" style="border-radius: 50px">
+                      <div class="card-img">
+                          <a href="#">
+                              <img src="~/images/@item.Image" class="img-responsive" style="width:360px;height:225px">
+                              <div class="card-caption">
+                                  
+                              </div>
+                          </a>
+                      </div>
+                      <div class="card-body">
+                          <div class="lead text-center">@item.Name</div>                          
+                          <table class="table">
+                              <tr><th></th><th>Price</th></tr>
+                              <tr><td>Price</td><td class="price">@item.Price MAD</td></tr>
+                              <tr><td>Kilometrage</td><td class="price">@item.Kilometrage MAD</td></tr>
+                              <tr><td>Availabilty</td><td class="price">@if (item.IsAvailable) { <p>Available</p> } else { <p>Not Available</p>}</td></tr>
+                              <tr><td>Annee du Modéle</td><td class="price">@item.annee Miladiya</td></tr>
+                          </table>      
+                          <a asp-action="Detail" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-primary btn-lg btn-block buy-now">
+                             Rent now <span class="glyphicon glyphicon-triangle-right"></span><span class="glyphicon glyphicon-triangle-right"></span>
+                          </a>
+                      </div>
+                  </div>
+        </div>
+                  }

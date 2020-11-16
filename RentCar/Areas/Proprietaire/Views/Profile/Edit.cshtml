@@ -1,0 +1,36 @@
+﻿@model RentCar.Models.Proprietaire
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="text text-success text-capitalize text-muted">Change Infomation</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" readonly class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="adresse" class="control-label"></label>
+                <input asp-for="adresse" class="form-control" />
+                <span asp-validation-for="adresse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<div> <a asp-action="Index" class="btn btn-info">Back to Profile</a></div>
+
+
